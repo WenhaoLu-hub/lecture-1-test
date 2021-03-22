@@ -1,0 +1,21 @@
+In Google Sheet, Open Tools > Script Editor then paste the following code
+
+
+function SHA256 (input) {
+  var rawHash = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, input);
+  var txtHash = '';
+  for (i = 0; i < rawHash.length; i++) {
+    var hashVal = rawHash[i];
+    if (hashVal < 0) {
+      hashVal += 256;
+    }
+    if (hashVal.toString(16).length == 1) {
+      txtHash += '0';
+    }
+    txtHash += hashVal.toString(16);
+  }
+  return txtHash;
+}
+
+
+Save the script after that and then use the SHA256 function in your spreadsheet while referencing a cell.
